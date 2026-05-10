@@ -7,7 +7,10 @@ def scrape_data(base_url="https://fashion-studio.dicoding.dev", max_pages=50):
     products = []
     try:
         for page in range(1, max_pages + 1):
-            url = f"{base_url}/?page={page}"
+            if page == 1:
+                url = f"{base_url}/"
+            else:
+                url = f"{base_url}/page{page}"
             response = requests.get(url, timeout=10)
             response.raise_for_status()
             

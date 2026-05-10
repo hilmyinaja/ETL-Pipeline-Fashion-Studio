@@ -45,7 +45,7 @@ def transform_data(raw_data):
         )
 
         df = df.dropna(subset=["Price", "Rating"])
-        df = df.drop_duplicates()
+        df = df.drop_duplicates(subset=["Title", "Price", "Rating", "Colors", "Size", "Gender"])
 
         df["Price"] = df["Price"].astype(float)
         df["Rating"] = df["Rating"].astype(float)
