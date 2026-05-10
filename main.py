@@ -28,9 +28,9 @@ def run_pipeline():
     print("\n[3/3] Loading: Menyimpan data ke repositori...")
     
     load_to_csv(clean_df, 'products.csv')
-    
-    # db_url = "postgresql://username:password@localhost:5432/fashion_db"
-    # load_to_postgres(clean_df, db_url)
+
+    db_url = "postgresql://postgres:admin123@localhost:5432/fashion_db"
+    load_to_postgres(clean_df, db_url)
     
     spreadsheet_id = "1IrqlGA1auFZ-1oUUytBx0eWiKkgjKfaoLxam5knaEwY"
     load_to_google_sheets(clean_df, spreadsheet_id, "Sheet1!A1")

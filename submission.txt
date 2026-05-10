@@ -1,0 +1,5 @@
+PostgreSQL:
+postgresql://<username>>:<password>@localhost:5432/fashion_db
+
+Google Sheets:
+https://docs.google.com/spreadsheets
