@@ -4,7 +4,7 @@ from utils.transform import transform_data
 
 class TestTransform(unittest.TestCase):
     def setUp(self):
-        # Data dummy kotor untuk skenario sukses (Happy Path)
+        # Data dummy kotor
         self.raw_data = [{
             'Title': 'T-shirt 2',
             'Price': '$10.00',
@@ -29,13 +29,12 @@ class TestTransform(unittest.TestCase):
         self.assertIsInstance(df.iloc[0]['Rating'], float)
         self.assertEqual(df.iloc[0]['Size'], 'M')
 
-    # --- MISI 2: Uji Error (Negative Testing) ---
+    # Uji error (negative testing)
     def test_transform_error(self):
-        # Sengaja mengirim integer untuk memicu Exception di Pandas
+        # Kirim integer buat memicu Exception di Pandas
         bad_data = 123
         result = transform_data(bad_data)
         
-        # Memastikan blok except tertangkap dan mengembalikan None
         self.assertIsNone(result)
 
 if __name__ == '__main__':

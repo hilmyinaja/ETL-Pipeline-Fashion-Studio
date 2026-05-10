@@ -5,7 +5,6 @@ from utils.extract import scrape_data
 class TestExtract(unittest.TestCase):
     @patch('utils.extract.requests.get')
     def test_scrape_data_success(self, mock_get):
-        # Simulasi respons HTML sederhana
         mock_response = MagicMock()
         mock_response.status_code = 200
         mock_response.content = b'<div class="collection-card"><h3 class="product-title">T-shirt Test</h3></div>'

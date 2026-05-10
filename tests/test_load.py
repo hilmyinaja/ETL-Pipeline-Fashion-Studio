@@ -5,7 +5,6 @@ from utils.load import load_to_csv, load_to_postgres, load_to_google_sheets
 
 class TestLoad(unittest.TestCase):
     def setUp(self):
-        # DataFrame bersih tiruan
         self.df = pd.DataFrame({
             'Title': ['T-shirt'], 
             'Price': [160000.0], 
@@ -16,7 +15,6 @@ class TestLoad(unittest.TestCase):
             'Timestamp': ['2026-05-10T12:00:00']
         })
 
-    # --- 1. UJI LOAD CSV ---
     @patch('pandas.DataFrame.to_csv')
     def test_load_to_csv_success(self, mock_to_csv):
         load_to_csv(self.df, 'test.csv')
@@ -27,7 +25,6 @@ class TestLoad(unittest.TestCase):
         mock_to_csv.side_effect = Exception("Gagal tulis CSV")
         load_to_csv(self.df, 'test.csv') # Harusnya tidak crash karena ada try-except
 
-    # --- 2. UJI LOAD POSTGRESQL ---
     @patch('utils.load.create_engine')
     @patch('pandas.DataFrame.to_sql')
     def test_load_to_postgres_success(self, mock_to_sql, mock_create_engine):
@@ -42,11 +39,9 @@ class TestLoad(unittest.TestCase):
         mock_create_engine.side_effect = Exception("Database error")
         load_to_postgres(self.df, 'postgresql://dummy_url')
 
-    # --- 3. UJI LOAD GOOGLE SHEETS ---
     @patch('utils.load.build')
     @patch('utils.load.Credentials.from_service_account_file')
     def test_load_to_google_sheets_success(self, mock_creds, mock_build):
-        # Menyiapkan rantai objek tiruan (mock) untuk merespons API Sheets
         mock_service = MagicMock()
         mock_build.return_value = mock_service
         
