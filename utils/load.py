@@ -38,24 +38,3 @@ def load_to_google_sheets(df, spreadsheet_id, range_name, credentials_file='goog
         print(f"Data berhasil disimpan ke Google Sheets ({result.get('updatedCells')} sel terupdate)")
     except Exception as e:
         print(f"Error menyimpan ke Google Sheets: {e}")
-
-if __name__ == "__main__":
-    from extract import scrape_data
-    from transform import transform_data
-    
-    print("Menyiapkan data dummy dari pipeline...")
-    raw_data = scrape_data(max_pages=2)
-    clean_df = transform_data(raw_data)
-    
-    if clean_df is not None:
-        print("\n--- Memulai Tahap Load ---")
-        
-        load_to_csv(clean_df, file_name='products.csv')
-        # Format URL: postgresql://username:password@host:port/database_name
-        # db_url = "postgresql://postgres:password@localhost:5432/fashion_db"
-        # load_to_postgres(clean_df, db_url)
-        
-        # 3. Test ke Google Sheets (Butuh ID Spreadsheet dan file JSON)
-        # SPREADSHEET_ID bisa didapat dari URL Google Sheets Anda
-        # SHEET_RANGE = "Sheet1!A1"
-        # load_to_google_sheets(clean_df, spreadsheet_id="ISI_DENGAN_ID_SHEET_ANDA", range_name="Sheet1!A1")

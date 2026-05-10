@@ -31,21 +31,3 @@ def transform_data(raw_data):
     except Exception as e:
         print(f"Terjadi kesalahan saat transformasi data: {e}")
         return None
-
-if __name__ == "__main__":
-    from extract import scrape_data
-    
-    print("Mengekstrak data untuk testing transformasi...")
-    raw_data = scrape_data(max_pages=5)
-    
-    if raw_data:
-        print("Data mentah berhasil didapat. Memulai transformasi...")
-        clean_df = transform_data(raw_data)
-        
-        if clean_df is not None:
-            print(f"Transformasi selesai. Sisa data bersih: {len(clean_df)} baris.")
-            print(clean_df.head())
-            print("\n--- Info DataFrame (Tipe Data) ---")
-            clean_df.info()
-        else:
-            print("Gagal melakukan transformasi.")

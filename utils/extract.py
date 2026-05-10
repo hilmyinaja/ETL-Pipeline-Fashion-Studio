@@ -63,16 +63,3 @@ def scrape_data(base_url="https://fashion-studio.dicoding.dev", max_pages=50):
         return None
         
     return products
-
-if __name__ == "__main__":
-    print("Memulai proses ekstraksi data")
-    
-    raw_data = scrape_data(max_pages=50) 
-    
-    if raw_data:
-        print(f"Ekstraksi selesai. Berhasil mengambil {len(raw_data)} data.")
-        
-        df_preview = pd.DataFrame(raw_data)
-        print(df_preview.head())
-    else:
-        print("Gagal mengekstrak data.")
